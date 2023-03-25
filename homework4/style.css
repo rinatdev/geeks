@@ -1,0 +1,52 @@
+body{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    width: 100%;
+}
+
+.container{
+    max-width: 996px;
+    margin: 0 auto;
+    font-family: 'Courier New', Courier, monospace;
+    margin-top: 30px;
+}
+
+button{
+    padding: 15px 30px;
+    border: 2px solid rgb(255, 0, 212);
+    border-radius: 10px;
+    font-weight: bold;
+    font-size: 16px;
+    color: rgb(255, 0, 212);
+    background-color: transparent;
+    display: block;
+    margin: auto;
+
+}
+
+.cards{
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 30px;
+    margin-top: 30px;
+}
+.card{
+    width: 300px;
+    height: 500px;
+    box-shadow: 5px 5px 20px #000000;
+    border-radius: 5px;
+}
+.card img{
+    width: 100%;
+    border-radius: 5px 5px 0 0;
+    max-height: 350px;
+    object-fit: cover;
+}
+
+.name, .age{
+    margin: 30px;
+    font-weight: bold;
+    font-size: 18px;
+}
