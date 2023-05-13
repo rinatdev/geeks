@@ -5,6 +5,7 @@ import Container from './components/Container/Container'
 import Button from './components/Button/Button';
 import Input from './components/Input/Input';
 import TodoCard from './components/TodoCard/TodoCard';
+import Select from './components/Select/Select';
 
 function App() {
   const [ isShow, setIsShow ] = useState(false)
@@ -28,6 +29,7 @@ function App() {
       completed: false
     }
   ])
+  const [ filter, setFilter ] = useState('all');
 
   const handleShow = () => setIsShow(!isShow)
 
@@ -79,7 +81,15 @@ function App() {
     setTasks([...editList])
   }
 
-  const filteredTasks = tasks.filter(task => task.task.toLowerCase().includes(search.toLowerCase()))
+  const filteredTasks = tasks.filter(task => {
+    if (filter === 'completed') {
+        return task.completed
+    } else if (filter === 'notCompleted') {
+        return !task.completed
+    } else {
+        return task.task.toLowerCase().includes(search.toLowerCase())
+    }
+  })
 
   return (
     <>
@@ -88,11 +98,7 @@ function App() {
           { isShow && <Modal handleAddTask={handleAddTask} setNewTask={setNewTask} handleShow={handleShow}/> } 
           <Button handleClick={handleShow}><p>Add</p></Button>
           <Input name={'search'} placeholder={'Search...'} onChange={handeleSearch}/>
-          <select>
-            <option>Все таски</option>
-            <option>Выполненные</option>
-            <option>Не выполенные</option>
-          </select>
+          <Select handleFilter={(value) => setFilter(value)} />
           {filteredTasks.map(task => 
             <TodoCard 
             handleDone={handleDone}
